@@ -29,6 +29,12 @@ function render(report, demo=false) {
   el('risk-period').textContent = report.start_date + ' to ' + report.end_date + ' (' + report.calendar_days + ' calendar day(s))';
   el('risk-pnl').textContent = usd(report.totals.observed_pnl);
   el('risk-pnl').className = report.totals.observed_pnl < 0 ? 'risk-negative' : 'risk-positive';
+  if (el('hero-scenario-pnl')) {
+    el('hero-scenario-pnl').textContent = usd(report.totals.observed_pnl);
+    el('hero-scenario-pnl').classList.toggle('is-positive', report.totals.observed_pnl >= 0);
+    el('hero-scenario-positions').textContent = String(report.position_count).padStart(2,'0');
+    el('hero-scenario-exceptions').textContent = String(report.exception_count).padStart(2,'0');
+  }
   el('risk-count').textContent = String(report.position_count);
   el('risk-exceptions').textContent = String(report.exception_count);
   const reconciliation = Math.abs(report.totals.reconciliation_error) < 0.0000005
@@ -44,7 +50,9 @@ function render(report, demo=false) {
     head.append(node('span',label),node('strong',usd(amount),amount<0?'risk-negative':'risk-positive'));
     const track=node('div','','risk-bar-track');
     const bar=node('div','','risk-bar-fill '+(amount<0?'loss':'gain'));
-    bar.style.width=Math.max(.2,Math.abs(amount)/max*100).toFixed(2)+'%';
+    const magnitude = Math.min(50, Math.max(.3,Math.abs(amount)/max*50));
+    bar.style.left=(amount<0 ? 50-magnitude : 50).toFixed(2)+'%';
+    bar.style.width=magnitude.toFixed(2)+'%';
     track.append(bar);wrap.append(head,track);bars.append(wrap);
   }
   const contracts=el('risk-rows');contracts.replaceChildren();
@@ -100,6 +108,7 @@ function selectScenario(id) {
   if (!scenario) throw Error('Unknown scenario');
   activeScenario = scenario;
   el('risk-scenario').value = scenario.id;
+  if (el('hero-scenario-name')) el('hero-scenario-name').textContent = scenario.name;
   el('risk-scenario-label').textContent = scenario.label.toUpperCase();
   el('risk-scenario-question').textContent = scenario.question;
   el('risk-scenario-move').textContent = scenario.market_move;

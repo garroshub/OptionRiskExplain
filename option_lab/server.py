@@ -12,7 +12,7 @@ from . import market
 from .risk import explain_csv
 
 _source_docs = Path(__file__).resolve().parent.parent / "docs"
-_installed_docs = Path(sysconfig.get_path("data")) / "share" / "garros-option-lab" / "docs"
+_installed_docs = Path(sysconfig.get_path("data")) / "share" / "option-risk-explain" / "docs"
 DOCS = _source_docs if (_source_docs / "index.html").is_file() else _installed_docs
 
 
@@ -25,7 +25,7 @@ def respond(path: str) -> tuple[int, dict]:
 
     try:
         if url.path == "/api/health":
-            return 200, {"ok": True, "market_data": "local_yfinance", "site": "option_lab"}
+            return 200, {"ok": True, "market_data": "local_yfinance", "site": "option_risk_explain"}
         if url.path == "/api/quote":
             return 200, market.quote(get("ticker", "SPY"))
         if url.path == "/api/expirations":
@@ -91,8 +91,8 @@ def serve(host: str = "127.0.0.1", port: int = 8765):
     if host != "127.0.0.1":
         raise ValueError("For safety the local market API only binds to 127.0.0.1")
     if not (DOCS / "index.html").is_file():
-        raise FileNotFoundError("Options Lab web assets missing. Install from the project wheel or run from the repository checkout.")
+        raise FileNotFoundError("Option Risk Explain web assets missing. Install from the project wheel or run from the repository checkout.")
     handler = partial(Handler, directory=str(DOCS))
     with ThreadingHTTPServer((host, port), handler) as httpd:
-        print(f"Options Lab: http://{host}:{httpd.server_port}/", flush=True)
+        print(f"Option Risk Explain: http://{host}:{httpd.server_port}/", flush=True)
         httpd.serve_forever()

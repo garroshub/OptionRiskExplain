@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="260" viewBox="0 0 1200 260" role="img" aria-labelledby="t d">
+<title id="t">Option P&amp;L reconciliation</title><desc id="d">Two position snapshots feed Greek attribution and exact model revaluation, then reconciliation and exception reporting.</desc>
+<rect width="1200" height="260" rx="12" fill="#101916"/>
+<g font-family="Segoe UI,Arial,sans-serif">
+<g>
+<rect x="38" y="38" width="345" height="170" rx="7" fill="#192a23" stroke="#456752"/>
+<text x="61" y="72" fill="#99e9c3" font-size="16" font-weight="650" letter-spacing="1.3">01 / INPUT</text>
+<text x="61" y="117" fill="#f0f4ee" font-size="29" font-weight="700">Two snapshots</text>
+<text x="61" y="157" fill="#bdcfc1" font-size="18">Positions · marks · market data</text>
+<text x="61" y="184" fill="#9eb8a7" font-size="16">Unchanged contract quantities</text>
+</g>
+<g>
+<rect x="427" y="38" width="345" height="170" rx="7" fill="#192a23" stroke="#456752"/>
+<text x="450" y="72" fill="#99e9c3" font-size="16" font-weight="650" letter-spacing="1.3">02 / REVALUE</text>
+<text x="450" y="117" fill="#f0f4ee" font-size="29" font-weight="700">Explain the move</text>
+<text x="450" y="157" fill="#bdcfc1" font-size="18">Opening Greeks + BSM repricing</text>
+<text x="450" y="184" fill="#9eb8a7" font-size="16">Approximation residual</text>
+</g>
+<g>
+<rect x="816" y="38" width="345" height="170" rx="7" fill="#192a23" stroke="#456752"/>
+<text x="839" y="72" fill="#99e9c3" font-size="16" font-weight="650" letter-spacing="1.3">03 / CONTROL</text>
+<text x="839" y="117" fill="#f0f4ee" font-size="29" font-weight="700">Reconcile P&amp;L</text>
+<text x="839" y="157" fill="#bdcfc1" font-size="18">Market/model basis + flags</text>
+<text x="839" y="184" fill="#9eb8a7" font-size="16">Contract-level exception report</text>
+</g>
+</g>
+<g stroke="#9ae9c3" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+<path d="M392 122h24m-8-8 8 8-8 8"/>
+<path d="M781 122h25m-8-8 8 8-8 8"/>
+</g>
+<text x="39" y="241" font-family="Consolas,Menlo,monospace" font-size="16" fill="#9bb0a2">OBSERVED P&amp;L = GREEK EXPLAIN + APPROXIMATION RESIDUAL + MARKET/MODEL BASIS</text>
+</svg>

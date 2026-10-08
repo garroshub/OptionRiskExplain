@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#091625">
+  <meta name="theme-color" content="#0a1313">
   <meta name="description" content="Equity-option portfolio P&amp;L attribution using opening Greeks, full BSM repricing and contract-level exception checks. Four interactive synthetic cases.">
   <title>Option Risk Explain: Daily P&amp;L Attribution</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -11,35 +11,54 @@
   <link rel="stylesheet" href="market.css">
   <link rel="stylesheet" href="risk.css">
   <link rel="stylesheet" href="risk-first.css">
+  <link rel="stylesheet" href="brand.css">
   <script type="module" src="app.js"></script>
   <script type="module" src="market.js"></script>
   <script type="module" src="risk.js"></script>
 </head>
 <body>
 <header class="nav shell">
-  <a href="#top" class="brand"><span class="mark">O.</span><span>OPTION<span class="soft">/RISK EXPLAIN</span></span></a>
-  <nav aria-label="Site navigation"><a href="#risk">P&amp;L attribution</a><a href="#workbench">Option pricing</a><a href="#market">Option chains</a><a class="nav-github" href="https://github.com/garroshub/Option-Trading-Analytical-Platform-App">Source</a></nav>
+  <a href="#top" class="brand"><span class="mark">OR</span><span>OPTION RISK <span class="soft">EXPLAIN</span></span></a>
+  <nav aria-label="Site navigation"><a href="#risk">Demo</a><a href="#method">Methodology</a><a href="#workbench">Pricing</a><a href="#market">Market data</a><a class="nav-github" href="https://github.com/garroshub/OptionRiskExplain" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav>
 </header>
 <main id="top">
 <section class="risk-section" id="risk"><div class="shell">
   <div class="risk-intro">
-    <div><p class="eyebrow"><span class="led"></span> EQUITY OPTIONS</p>
-      <h1>Daily P&amp;L <em>attribution</em></h1>
-      <p class="lead">Five option positions across two dates. Compare the effect of spot prices, implied volatility and valuation marks on portfolio P&amp;L. The report separates Greek contributions from model and market residuals.</p></div>
-    <div class="risk-intro-side"><span>AVAILABLE CASES</span><strong>4</strong><p>Market moves and valuation controls</p><div>Synthetic positions and prices</div></div>
+    <div class="risk-intro-copy">
+      <p class="eyebrow">EQUITY OPTIONS <span class="hero-slash">/</span> RISK ANALYTICS</p>
+      <h1>Option Risk <em>Explain</em><span class="hero-stop">.</span></h1>
+      <p class="hero-subtitle">Daily P&amp;L attribution for equity-option portfolios.</p>
+      <p class="lead">Break down an option desk’s daily change into Delta, Gamma, Vega, Theta, rates and valuation residuals. Inspect the contracts behind each exception.</p>
+      <div class="hero-buttons">
+        <a class="hero-btn hero-btn-primary" href="#risk-scenario">Explore the demo <span aria-hidden="true">↗</span></a>
+        <a class="hero-btn hero-btn-secondary" href="https://github.com/garroshub/OptionRiskExplain#local-setup" target="_blank" rel="noopener noreferrer">Install Python package <span aria-hidden="true">↗</span></a>
+      </div>
+      <p class="hero-context">Python API · CLI · Interactive report <span aria-hidden="true">/</span> Synthetic data</p>
+    </div>
+    <div class="risk-intro-side" aria-label="Current demo portfolio summary">
+      <span class="hero-case-index">DESK / SELECTED SCENARIO</span>
+      <p id="hero-scenario-name" class="hero-case-name">Daily desk review</p>
+      <strong id="hero-scenario-pnl" class="hero-case-value">−$1,152</strong>
+      <span class="hero-case-caption">OBSERVED P&amp;L · USD</span>
+      <div class="hero-case-rule"></div>
+      <div class="hero-case-detail"><span>POSITIONS</span><strong id="hero-scenario-positions">05</strong></div>
+      <div class="hero-case-detail"><span>EXCEPTIONS</span><strong id="hero-scenario-exceptions">02</strong></div>
+      <div class="hero-case-detail"><span>RECONCILIATION</span><strong>$0.00</strong></div>
+      <a href="#risk-report" class="hero-case-link">View attribution <span aria-hidden="true">↘</span></a>
+    </div>
   </div>
   <div class="panel risk-shell">
-    <div class="risk-banner"><span class="risk-tag">SCENARIO ANALYSIS</span><span class="risk-tag">PRECOMPUTED USING THE PYTHON MODEL</span></div>
+    <div class="risk-banner"><span class="risk-tag">01 <span aria-hidden="true">/</span> PORTFOLIO SCENARIOS</span><span class="risk-tag">FOUR MODEL-GENERATED CASES · NO ACCOUNT REQUIRED</span></div>
     <div class="risk-scenario-panel">
       <div class="risk-scenario-picker">
-        <label for="risk-scenario">Market scenario</label>
+        <label for="risk-scenario">Choose a risk scenario</label>
         <select id="risk-scenario" aria-label="Choose simulated risk scenario">
           <option value="desk-review">Daily desk review</option>
           <option value="equity-selloff">Equity market selloff</option>
           <option value="volatility-spike">Volatility repricing</option>
           <option value="valuation-break">Valuation exception</option>
         </select>
-        <p>Results update when you change the scenario.</p>
+        <p>Switch between market moves and valuation checks.</p>
       </div>
       <div class="risk-scenario-story" aria-live="polite">
         <span id="risk-scenario-label" class="risk-tag">MIXED EXPOSURES</span>
@@ -50,7 +69,7 @@
     </div>
     <p id="risk-status" class="risk-status" role="status" aria-live="polite">Loading scenarios…</p>
     <section id="risk-report" class="risk-result" hidden>
-      <div class="risk-result-head"><div><span id="risk-mode" class="risk-tag">SYNTHETIC DATA</span><h3 style="margin:5px 0;font-size:23px">Portfolio P&amp;L</h3><div id="risk-period" class="risk-period">—</div></div><span id="risk-threshold-display" class="risk-tag">—</span></div>
+      <div class="risk-result-head"><div><span id="risk-mode" class="risk-tag">SYNTHETIC DATA</span><h3>Portfolio P&amp;L</h3><div id="risk-period" class="risk-period">—</div></div><span id="risk-threshold-display" class="risk-tag">—</span></div>
       <div class="risk-kpis">
         <div class="risk-kpi"><small>Observed P&amp;L</small><strong id="risk-pnl">—</strong></div>
         <div class="risk-kpi"><small>Positions</small><strong id="risk-count">—</strong></div>
@@ -58,7 +77,7 @@
         <div class="risk-kpi"><small>Reconciliation error</small><strong id="risk-reconcile">—</strong></div>
       </div>
       <div class="risk-chart-area">
-        <div class="risk-block"><h3>P&amp;L by risk factor</h3><p class="risk-note">USD contributions, including the two reconciliation residuals</p><div id="risk-bars"></div></div>
+        <div class="risk-block"><h3>P&amp;L by risk factor</h3><p class="risk-note">Negative contributions to the left; positive to the right</p><div id="risk-bars" aria-label="Diverging bar chart of P&L contributions"></div></div>
         <div class="risk-block"><h3>Reading the attribution</h3>
           <ul class="risk-method-notes">
             <li><strong>Greeks:</strong> opening sensitivities applied to the change in spot, implied volatility, rates and time.</li>
@@ -95,6 +114,10 @@
       </div>
     </details>
   </div>
+</div></section>
+<section class="package-cta"><div class="shell package-cta-inner">
+  <div><span class="eyebrow">PYTHON / LOCAL-FIRST</span><h2>Use the same engine in your own workflow.</h2><p>Analyze fixed-position snapshots from Python, the CLI or the local browser.</p></div>
+  <div class="package-cta-actions"><a class="hero-btn hero-btn-primary" href="https://github.com/garroshub/OptionRiskExplain#local-setup" target="_blank" rel="noopener noreferrer">Installation guide <span aria-hidden="true">↗</span></a><a class="hero-btn hero-btn-secondary" href="https://github.com/garroshub/OptionRiskExplain" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></div>
 </div></section>
 <section class="workbench-wrap" id="workbench"><div class="shell">
   <div class="section-head"><div><p class="eyebrow">OPTION PRICING</p><h2>Black–Scholes model</h2></div><p>Call and put prices, Greeks and spot-price sensitivity. Inputs stay in the browser.</p></div>
@@ -160,5 +183,5 @@
   <div class="limitations"><article><span>01 / EXERCISE</span><h4>European contracts</h4><p>Options are assumed exercisable only at expiration. This model does not include American early exercise.</p></article><article><span>02 / DATA BOUNDARY</span><h4>Yahoo through the local API</h4><p>The Streamlit-free Python adapter retrieves market quotes, listed expiration dates and call/put chains through yfinance. The public static GitHub Pages site is limited to theoretical pricing.</p></article><article><span>03 / INTERPRETATION</span><h4>Theoretical prices</h4><p>Constant volatility and rates, no transaction costs. Outputs are educational and are neither executable quotes nor trading recommendations.</p></article></div></div>
 </section>
 </main>
-<footer><div class="shell footer-content"><a href="#top" class="brand"><span class="mark">O.</span>OPTION<span class="soft">/RISK EXPLAIN</span></a><div><a href="https://github.com/garroshub/Option-Trading-Analytical-Platform-App">Source code</a><span>Garros Gong</span></div></div></footer>
+<footer><div class="shell footer-content"><a href="#top" class="brand"><span class="mark">OR</span>OPTION RISK <span class="soft">EXPLAIN</span></a><div><a href="https://github.com/garroshub/OptionRiskExplain">GitHub repository ↗</a><span>Garros Gong · Equity options analytics</span></div></div></footer>
 </body></html>

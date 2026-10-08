@@ -6,7 +6,7 @@ from tempfile import TemporaryDirectory
 import venv
 
 ROOT = Path(__file__).resolve().parents[1]
-wheel = next((ROOT / "dist").glob("garros_option_lab-0.2.0-*.whl"))
+wheel = next((ROOT / "dist").glob("option_risk_explain-0.2.0-*.whl"))
 with TemporaryDirectory(prefix="optionlab-wheel-") as folder:
     temp = Path(folder)
     environment = temp / "venv"
@@ -23,6 +23,7 @@ assert (DOCS / 'market.js').is_file(), DOCS
 assert (DOCS / 'risk.js').is_file(), DOCS
 assert (DOCS / 'risk.css').is_file(), DOCS
 assert (DOCS / 'risk-first.css').is_file(), DOCS
+assert (DOCS / 'brand.css').is_file(), DOCS
 assert (DOCS / 'risk-scenarios.json').is_file(), DOCS
 assert (DOCS / 'risk-demo.json').is_file(), DOCS
 assert (DOCS / 'positions_2026-10-05.csv').is_file(), DOCS

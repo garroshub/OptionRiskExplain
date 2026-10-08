@@ -64,6 +64,8 @@ class BrowserStaticScenarios(TestCase):
                     errors=[]
                     page.on("pageerror",lambda e:errors.append(str(e)))
                     page.goto(self.url,wait_until="networkidle")
+                    self.assertTrue(page.locator(".hero-btn-primary").first.is_visible())
+                    self.assertIn("Option Risk Explain",page.locator("h1").inner_text())
                     self.assertFalse(page.locator("#risk-report").is_hidden())
                     self.assertIn("SYNTHETIC DATA",page.locator("#risk-mode").inner_text())
                     self.assertIn("Scenario results available",page.locator("#risk-local").text_content())

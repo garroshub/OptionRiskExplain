@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "garros-option-lab"
+name = "option-risk-explain"
 version = "0.2.0"
-description = "Auditable equity options P&L explain, Greeks attribution and exception monitoring"
+description = "Option Risk Explain: equity-option P&L attribution and exception review"
 requires-python = ">=3.10"
 dependencies = []
 
@@ -14,13 +14,14 @@ market = ["yfinance>=0.2.66,<1"]
 dev = ["pytest>=8"]
 
 [project.scripts]
+option-risk-explain = "option_lab.cli:main"
 option-lab = "option_lab.cli:main"
 
 [tool.setuptools.packages.find]
 include = ["option_lab*"]
 
 [tool.setuptools.data-files]
-"share/garros-option-lab/docs" = [
+"share/option-risk-explain/docs" = [
   "docs/index.html",
   "docs/styles.css",
   "docs/market.css",
@@ -30,10 +31,11 @@ include = ["option_lab*"]
   "docs/risk.js",
   "docs/risk.css",
   "docs/risk-first.css",
+  "docs/brand.css",
   "docs/risk-demo.json",
   "docs/risk-scenarios.json",
   "docs/positions_2026-10-05.csv",
   "docs/positions_2026-10-06.csv",
   "docs/.nojekyll",
 ]
-"share/garros-option-lab/docs/assets" = ["docs/assets/favicon.svg"]
+"share/option-risk-explain/docs/assets" = ["docs/assets/favicon.svg"]

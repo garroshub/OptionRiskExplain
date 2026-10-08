@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="392" viewBox="0 0 1200 392" role="img" aria-labelledby="title desc">
+<title id="title">Option Risk Explain</title>
+<desc id="desc">Portfolio P&amp;L attribution. In the synthetic equity selloff case, observed P&amp;L is negative $44,471, Delta contributes negative $63,018 and Vega contributes positive $11,288.</desc>
+<rect width="1200" height="392" rx="12" fill="#101916"/>
+<path d="M54 55H1146" stroke="#31483e" stroke-width="1"/>
+<g font-family="Segoe UI,Arial,sans-serif">
+<text x="56" y="41" font-size="18" font-weight="650" letter-spacing="1.8" fill="#9ae9c4">EQUITY OPTIONS / PORTFOLIO RISK</text>
+<text x="49" y="141" font-size="65" font-weight="750" letter-spacing="-2" fill="#f0f4ef">Option Risk</text>
+<text x="49" y="207" font-size="65" font-weight="750" letter-spacing="-2" fill="#a6f2ce">Explain</text>
+<text x="55" y="256" font-size="23" fill="#c6d7cd">Daily P&amp;L attribution and exception review</text>
+</g>
+<g font-family="Consolas,Menlo,monospace" font-size="17" fill="#9cb5a6">
+<text x="55" y="318">BSM GREEKS</text>
+<text x="55" y="351" fill="#f0f4ef">Delta · Gamma · Vega · Theta · Rho</text>
+</g>
+<path d="M55 288H624" stroke="#365246"/>
+<path d="M662 74V350" stroke="#365246"/>
+<rect x="685" y="84" width="460" height="276" rx="7" fill="#192a23" stroke="#466957"/>
+<g font-family="Segoe UI,Arial,sans-serif">
+<text x="709" y="115" font-size="17" letter-spacing="1.1" fill="#b3c7b9">EQUITY SELLOFF / SYNTHETIC CASE</text>
+<text x="708" y="174" font-size="51" font-weight="730" fill="#f0aa9c">−$44,471</text>
+<text x="712" y="199" font-size="18" fill="#aec6b7">Observed portfolio P&amp;L</text>
+<path d="M710 218H1121" stroke="#466453"/>
+<text x="711" y="247" font-size="19" fill="#cdded1">Delta</text>
+<text x="1121" y="247" text-anchor="end" font-size="20" font-weight="700" fill="#f0aa9c">−$63,018</text>
+<text x="711" y="280" font-size="19" fill="#cdded1">Vega</text>
+<text x="1121" y="280" text-anchor="end" font-size="20" font-weight="700" fill="#a6f2ce">+$11,288</text>
+<path d="M710 300H1121" stroke="#466453"/>
+<text x="710" y="331" font-size="17" fill="#9eb6a6">5 positions</text>
+<text x="1121" y="331" text-anchor="end" font-size="17" fill="#9eb6a6">3 exceptions</text>
+</g>
+</svg>

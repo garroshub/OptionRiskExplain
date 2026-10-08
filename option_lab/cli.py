@@ -1,4 +1,4 @@
-"""CLI entry point for the Streamlit-free options toolkit."""
+"""CLI for option P&L attribution and pricing."""
 from __future__ import annotations
 
 import argparse
@@ -13,7 +13,7 @@ from .server import serve
 
 
 def make_parser():
-    parser = argparse.ArgumentParser(prog="option-lab", description="Equity option P&L explain, pricing, option chains and local reporting.")
+    parser = argparse.ArgumentParser(prog="option-risk-explain", description="Equity option P&L explain, pricing, option chains and local reporting.")
     cmd = parser.add_subparsers(dest="command", required=True)
     p = cmd.add_parser("price", help="Black-Scholes European call/put and Greeks")
     p.add_argument("--spot", type=float, required=True)
