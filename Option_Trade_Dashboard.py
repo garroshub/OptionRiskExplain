@@ -58,8 +58,6 @@ with st.sidebar.form(key='inputs_form'):
     rf = st.number_input('Risk-Free Interest Rate (r in %):', value=5.0, min_value=0.0)
     divRate = st.number_input('Dividend Rate (q in %):', value=0.0, min_value=0.0)
     vol = st.number_input('Volatility (v in %):', value=25.0, min_value=0.0)
-    #startDate = st.date_input('Start Date', pd.to_datetime('2016-11-01'))
-    #endDate = st.date_input('End Date', datetime.now())
     submit_btn = st.form_submit_button(label='Calculate')
  
 call = callOption(spot, strike, t, rf/100, divRate/100, vol/100)
@@ -93,7 +91,6 @@ with colInputs:
     expDF = yf.grabExpDates(ticker)
     if not expDF.empty:
         link = "https://query2.finance.yahoo.com/v7/finance/options/{}?date=".format(ticker)
-        # Create the link column safely
         expDF = expDF.copy()  # Create a copy to avoid SettingWithCopyWarning
         expDF['Link'] = expDF['Unix Date'].apply(lambda x: link + str(x))
         allDates = list(expDF.index.strftime('%Y-%m-%d'))

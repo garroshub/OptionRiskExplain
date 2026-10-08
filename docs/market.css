@@ -1,0 +1,27 @@
+/* Yahoo market-data mode: matches the Options Lab navy/teal design language. */
+.market-section{padding-block:72px 95px}
+.market-shell{padding:27px}
+.market-title{display:flex;justify-content:space-between;gap:20px;align-items:center;padding-bottom:21px;border-bottom:1px solid #29485e}
+#market-status{font-size:12px;line-height:1.5;text-align:right;color:#f5bc79}
+.market-toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:25px}
+.market-toolbar label{font-size:12px;font-weight:650;color:#dcebf0}
+.market-toolbar input,.market-toolbar select{background:#0b2031;border:1px solid #3c5f73;border-radius:7px;color:#eff8fd;padding:11px 13px;min-width:135px;font-size:14px}
+.market-toolbar input{width:185px;text-transform:uppercase}
+.market-toolbar select{min-width:200px}
+.market-expiry-row{padding-top:23px;border-top:1px solid #29485e;margin-top:22px}
+.market-quote{margin:20px 0 13px;font-size:18px;color:#dbeaf2;font-variant-numeric:tabular-nums}
+.market-shell .secondary:disabled,.market-shell .primary:disabled,.market-toolbar select:disabled{opacity:.5;cursor:not-allowed}
+.market-table-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:19px;margin-top:27px}
+.market-table-wrapper{border:1px solid #36576a;border-radius:9px;min-width:0;overflow:hidden}
+.market-table-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 13px;border-bottom:1px solid #35536a;background:#0a2032}
+.market-table-head h3{font-size:15px;margin:0}
+.market-table-head span{font-size:11px;color:#92b3c4}
+.market-scroll{overflow:auto;max-height:430px}
+.market-scroll table{min-width:540px;table-layout:auto;margin:0}
+.market-scroll th,.market-scroll td{white-space:nowrap;font-size:11px;padding:8px 10px}
+.market-scroll th{position:sticky;top:0;background:#183347;z-index:1}
+.market-scroll td{color:#d6e5ef}
+.market-scroll tbody tr:hover{background:#1a3a4d}
+.market-shell code{color:#8ff3d3;font-size:11px;overflow-wrap:anywhere}
+@media(max-width:900px){.market-table-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.market-section{padding-block:55px}.market-shell{padding:17px}.market-title{align-items:start;flex-direction:column}.market-toolbar{align-items:stretch;flex-direction:column}.market-toolbar input,.market-toolbar select{width:100%}.market-toolbar .button{width:100%;text-align:center}.market-quote{font-size:16px}}

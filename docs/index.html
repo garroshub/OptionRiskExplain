@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#091625">
+  <meta name="description" content="Equity-option portfolio P&amp;L attribution using opening Greeks, full BSM repricing and contract-level exception checks. Four interactive synthetic cases.">
+  <title>Option Risk Explain: Daily P&amp;L Attribution</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="market.css">
+  <link rel="stylesheet" href="risk.css">
+  <link rel="stylesheet" href="risk-first.css">
+  <script type="module" src="app.js"></script>
+  <script type="module" src="market.js"></script>
+  <script type="module" src="risk.js"></script>
+</head>
+<body>
+<header class="nav shell">
+  <a href="#top" class="brand"><span class="mark">O.</span><span>OPTION<span class="soft">/RISK EXPLAIN</span></span></a>
+  <nav aria-label="Site navigation"><a href="#risk">P&amp;L attribution</a><a href="#workbench">Option pricing</a><a href="#market">Option chains</a><a class="nav-github" href="https://github.com/garroshub/Option-Trading-Analytical-Platform-App">Source</a></nav>
+</header>
+<main id="top">
+<section class="risk-section" id="risk"><div class="shell">
+  <div class="risk-intro">
+    <div><p class="eyebrow"><span class="led"></span> EQUITY OPTIONS</p>
+      <h1>Daily P&amp;L <em>attribution</em></h1>
+      <p class="lead">Five option positions across two dates. Compare the effect of spot prices, implied volatility and valuation marks on portfolio P&amp;L. The report separates Greek contributions from model and market residuals.</p></div>
+    <div class="risk-intro-side"><span>AVAILABLE CASES</span><strong>4</strong><p>Market moves and valuation controls</p><div>Synthetic positions and prices</div></div>
+  </div>
+  <div class="panel risk-shell">
+    <div class="risk-banner"><span class="risk-tag">SCENARIO ANALYSIS</span><span class="risk-tag">PRECOMPUTED USING THE PYTHON MODEL</span></div>
+    <div class="risk-scenario-panel">
+      <div class="risk-scenario-picker">
+        <label for="risk-scenario">Market scenario</label>
+        <select id="risk-scenario" aria-label="Choose simulated risk scenario">
+          <option value="desk-review">Daily desk review</option>
+          <option value="equity-selloff">Equity market selloff</option>
+          <option value="volatility-spike">Volatility repricing</option>
+          <option value="valuation-break">Valuation exception</option>
+        </select>
+        <p>Results update when you change the scenario.</p>
+      </div>
+      <div class="risk-scenario-story" aria-live="polite">
+        <span id="risk-scenario-label" class="risk-tag">MIXED EXPOSURES</span>
+        <h2 id="risk-scenario-question">Which factors explain the daily change?</h2>
+        <p id="risk-scenario-move" class="risk-scenario-move">SPY -0.9%, AAPL +1.2%</p>
+        <p id="risk-scenario-focus" class="risk-scenario-focus">Loading scenario…</p>
+      </div>
+    </div>
+    <p id="risk-status" class="risk-status" role="status" aria-live="polite">Loading scenarios…</p>
+    <section id="risk-report" class="risk-result" hidden>
+      <div class="risk-result-head"><div><span id="risk-mode" class="risk-tag">SYNTHETIC DATA</span><h3 style="margin:5px 0;font-size:23px">Portfolio P&amp;L</h3><div id="risk-period" class="risk-period">—</div></div><span id="risk-threshold-display" class="risk-tag">—</span></div>
+      <div class="risk-kpis">
+        <div class="risk-kpi"><small>Observed P&amp;L</small><strong id="risk-pnl">—</strong></div>
+        <div class="risk-kpi"><small>Positions</small><strong id="risk-count">—</strong></div>
+        <div class="risk-kpi"><small>Exceptions</small><strong id="risk-exceptions">—</strong></div>
+        <div class="risk-kpi"><small>Reconciliation error</small><strong id="risk-reconcile">—</strong></div>
+      </div>
+      <div class="risk-chart-area">
+        <div class="risk-block"><h3>P&amp;L by risk factor</h3><p class="risk-note">USD contributions, including the two reconciliation residuals</p><div id="risk-bars"></div></div>
+        <div class="risk-block"><h3>Reading the attribution</h3>
+          <ul class="risk-method-notes">
+            <li><strong>Greeks:</strong> opening sensitivities applied to the change in spot, implied volatility, rates and time.</li>
+            <li><strong>Approximation residual:</strong> full BSM repricing less the Greek estimate. Includes higher-order effects.</li>
+            <li><strong>Market/model basis:</strong> mark-to-market P&amp;L less BSM repricing. Check valuation inputs and timestamps.</li>
+            <li><strong>Coverage:</strong> fixed contract quantities and European BSM pricing. Exercise, settlements and trades are excluded.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="risk-table-title"><h3>Contract-level attribution</h3><div class="risk-export"><button id="risk-json" type="button">Export JSON</button><button id="risk-csv" type="button">Export CSV</button></div></div>
+      <div class="risk-scroll"><table><thead><tr><th>Contract</th><th>Contracts</th><th>Observed P&amp;L</th><th>Greek explain</th><th>Approx. residual</th><th>Market/model basis</th><th>Flags</th></tr></thead><tbody id="risk-rows"></tbody></table></div>
+      <div class="risk-table-title"><h3>Exceptions</h3><span class="risk-note">User-selected threshold</span></div>
+      <div class="risk-scroll"><table><thead><tr><th>Contract</th><th>Check</th><th>Amount / action</th></tr></thead><tbody id="risk-exception-rows"></tbody></table></div>
+      <p class="risk-foot">The model assumes European exercise and unchanged positions. The regulatory FRTB P&amp;L attribution test is outside its scope.</p>
+    </section>
+    <details id="risk-advanced" class="risk-advanced">
+      <summary><span>Custom portfolio analysis</span><span class="risk-advanced-hint">Local Python server required</span></summary>
+      <div class="risk-advanced-body">
+        <p class="risk-note">Upload two position snapshots to calculate a report for your own book. Contract identities, quantities and multipliers must match across both dates.</p>
+        <form class="risk-form" id="risk-form">
+          <div class="risk-form-grid">
+            <label for="risk-start">Start snapshot CSV<input id="risk-start" type="file" accept=".csv,text/csv"></label>
+            <label for="risk-end">End snapshot CSV<input id="risk-end" type="file" accept=".csv,text/csv"></label>
+            <label for="risk-threshold">Exception threshold (USD)<input id="risk-threshold" type="number" min="0" step="1" value="500" required></label>
+          </div>
+          <div class="risk-actions">
+            <button id="risk-run" type="submit" class="button primary" disabled>Calculate P&amp;L</button>
+            <button id="risk-demo" type="button" class="button secondary">Return to selected scenario</button>
+            <button id="risk-sample-start" type="button" class="button reset">Download start CSV</button>
+            <button id="risk-sample-end" type="button" class="button reset">Download end CSV</button>
+          </div>
+          <p class="risk-note" id="risk-local">Checking local Python server…</p>
+        </form>
+      </div>
+    </details>
+  </div>
+</div></section>
+<section class="workbench-wrap" id="workbench"><div class="shell">
+  <div class="section-head"><div><p class="eyebrow">OPTION PRICING</p><h2>Black–Scholes model</h2></div><p>Call and put prices, Greeks and spot-price sensitivity. Inputs stay in the browser.</p></div>
+  <div class="workbench">
+    <form id="model-form" class="panel inputs" novalidate>
+      <div class="panel-title"><span>MODEL INPUTS</span><span class="indicator">BROWSER CALCULATION</span></div>
+      <div class="fields">
+        <label>Spot price <small>S</small><input id="S" type="number" step="any" min="0" value="100" required></label>
+        <label>Strike price <small>K</small><input id="K" type="number" step="any" min=".00001" value="100" required></label>
+        <label class="full">Time to expiration <small>T</small><span class="joined"><input id="term" type="number" min="0" step="any" value="30" required><select id="unit" aria-label="Time unit"><option value="days">Days</option><option value="months">Months</option><option value="years">Years</option></select></span></label>
+        <label>Risk-free rate <small>% annually</small><input id="r" type="number" step="any" value="5" required></label>
+        <label>Dividend yield <small>% annually</small><input id="q" type="number" step="any" value="0" required></label>
+        <label class="full">Annualized volatility <small>% annually</small><input id="v" type="number" min="0" step="any" value="25" required></label>
+      </div>
+      <div class="input-actions"><button type="submit" class="button primary">Calculate</button><button id="reset" type="button" class="button reset">Reset</button></div>
+      <p id="error" role="alert" hidden></p>
+      <p class="small muted">Model values per share with continuously compounded rates. Prices are theoretical.</p>
+    </form>
+    <div class="output">
+      <div class="prices">
+        <article class="panel price-box"><div class="panel-title">CALL / MODEL PRICE <span>C</span></div><strong id="call" class="call-txt" aria-live="polite">—</strong><small>European call · per share</small></article>
+        <article class="panel price-box"><div class="panel-title">PUT / MODEL PRICE <span>P</span></div><strong id="put" class="put-txt" aria-live="polite">—</strong><small>European put · per share</small></article>
+      </div>
+      <section class="panel chart-box"><div class="chart-top"><div><p class="panel-title">MODEL SENSITIVITY / SPOT</p><h3>Premium against spot</h3></div><div class="legend"><span><i class="dot green"></i> Call</span><span><i class="dot amber"></i> Put</span></div></div><div id="curve" role="img" aria-label="Model call and put premiums over a range of underlying spot prices"></div><p class="small muted">The horizontal axis varies spot; all other parameters remain fixed. Curves are theoretical model values, not market prices.</p></section>
+      <section class="panel greek-box"><div class="chart-top"><div><p class="panel-title">FIRST- AND SECOND-ORDER RISK</p><h3>Option Greeks</h3></div><span class="small muted">per share</span></div>
+        <table><thead><tr><th>Measure</th><th>Call</th><th>Put</th></tr></thead><tbody>
+          <tr><td>Delta <small>per 1-unit spot change</small></td><td id="dc">—</td><td id="dp">—</td></tr>
+          <tr><td>Gamma <small>per unit of spot²</small></td><td id="gc">—</td><td id="gp">—</td></tr>
+          <tr><td>Vega <small>per +1 vol. point</small></td><td id="vc">—</td><td id="vp">—</td></tr>
+          <tr><td>Theta <small>per calendar day</small></td><td id="tc">—</td><td id="tp">—</td></tr>
+          <tr><td>Rho <small>per +1 rate point</small></td><td id="rc">—</td><td id="rp">—</td></tr>
+        </tbody></table>
+        <p class="small muted">Greeks are unavailable at expiration or zero volatility, where standard smooth derivatives break down.</p>
+      </section>
+    </div>
+  </div>
+</div></section>
+<section class="market-section shell" id="market">
+  <div class="section-head"><div><p class="eyebrow">MARKET DATA</p><h2>Yahoo option chains</h2></div><p>Calls, puts, bid/ask, implied volatility and open interest from Yahoo Finance. Available when the Python server runs locally.</p></div>
+  <div class="panel market-shell">
+    <div class="market-title"><span class="panel-title">DATA PROVIDER / YAHOO FINANCE VIA YFINANCE</span><span id="market-status" role="status" aria-live="polite">Checking local data adapter…</span></div>
+    <div id="market-controls" hidden>
+      <form id="market-form" class="market-toolbar">
+        <label for="ticker-input">Underlying ticker</label>
+        <input id="ticker-input" type="text" value="SPY" maxlength="20" autocomplete="off" spellcheck="false" aria-label="Ticker symbol">
+        <button id="ticker-button" class="button primary" type="submit">Get quotes</button>
+      </form>
+      <p id="market-quote" class="market-quote">Choose a symbol to retrieve its quote and expiration dates.</p>
+      <button id="market-transfer" type="button" class="button secondary" disabled>Copy spot to model</button>
+      <div class="market-toolbar market-expiry-row"><label for="market-expiry">Listed expiration</label><select id="market-expiry" disabled aria-label="Listed option expiry"></select><button id="chain-button" type="button" class="button secondary" disabled>Load call + put chains</button></div>
+      <div class="market-table-grid">
+        <div id="calls-market" class="market-table-wrapper" hidden><div class="market-table-head"><h3>Call chain</h3><span id="calls-count"></span></div><div class="market-scroll"><table><thead><tr><th>Strike</th><th>Last</th><th>Bid</th><th>Ask</th><th>IV</th><th>Volume</th><th>Open Int.</th></tr></thead><tbody id="calls-rows"></tbody></table></div></div>
+        <div id="puts-market" class="market-table-wrapper" hidden><div class="market-table-head"><h3>Put chain</h3><span id="puts-count"></span></div><div class="market-scroll"><table><thead><tr><th>Strike</th><th>Last</th><th>Bid</th><th>Ask</th><th>IV</th><th>Volume</th><th>Open Int.</th></tr></thead><tbody id="puts-rows"></tbody></table></div></div>
+      </div>
+      <p class="small muted">Yahoo data may be delayed or incomplete. Retrieval time is separate from the exchange quote timestamp.</p>
+    </div>
+    <p class="small muted">For option-chain data, run <code>python -m option_lab serve</code> and open <code>http://127.0.0.1:8765/</code>. Static hosting supports the pricing model and four saved portfolio scenarios.</p>
+  </div>
+</section>
+<section class="method shell" id="method">
+  <div class="section-head"><div><p class="eyebrow">METHODOLOGY</p><h2>Model assumptions</h2></div><p>European option prices with continuous dividends. Scenario attribution uses opening Greeks and full model repricing.</p></div>
+  <div class="method-grid"><div class="formula-wrap"><p class="eyebrow">BLACK–SCHOLES–MERTON</p><h3>Closed-form pricing with continuous dividends</h3><p>S is the underlying spot, K the exercise price, T the time in years, r the risk-free rate, q the dividend yield and σ the annualized volatility.</p><div class="formula">C = S e<sup>−qT</sup> N(d₁) − K e<sup>−rT</sup> N(d₂)</div><div class="formula">P = K e<sup>−rT</sup> N(−d₂) − S e<sup>−qT</sup> N(−d₁)</div><p class="small muted">d₁ = [ln(S/K) + (r − q + σ²/2)T] / (σ√T); d₂ = d₁ − σ√T.</p></div>
+  <div class="limitations"><article><span>01 / EXERCISE</span><h4>European contracts</h4><p>Options are assumed exercisable only at expiration. This model does not include American early exercise.</p></article><article><span>02 / DATA BOUNDARY</span><h4>Yahoo through the local API</h4><p>The Streamlit-free Python adapter retrieves market quotes, listed expiration dates and call/put chains through yfinance. The public static GitHub Pages site is limited to theoretical pricing.</p></article><article><span>03 / INTERPRETATION</span><h4>Theoretical prices</h4><p>Constant volatility and rates, no transaction costs. Outputs are educational and are neither executable quotes nor trading recommendations.</p></article></div></div>
+</section>
+</main>
+<footer><div class="shell footer-content"><a href="#top" class="brand"><span class="mark">O.</span>OPTION<span class="soft">/RISK EXPLAIN</span></a><div><a href="https://github.com/garroshub/Option-Trading-Analytical-Platform-App">Source code</a><span>Garros Gong</span></div></div></footer>
+</body></html>

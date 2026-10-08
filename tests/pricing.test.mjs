@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {priceOption,cdf} from '../docs/pricing.mjs';
+const near=(a,b,eps=1e-5)=>assert.ok(Math.abs(a-b)<eps,'Expected '+a+' ≈ '+b);
+const standard={S:100,K:100,T:1,r:.05,q:0,v:.2};
+test('normal CDF reference and symmetry',()=>{near(cdf(0),.5,1e-7);near(cdf(1.96),.9750021,1e-6);near(cdf(-1.96),.0249979,1e-6);});
+test('BSM reference prices and Greeks',()=>{const z=priceOption(standard);near(z.call,10.45058357);near(z.put,5.57352602);near(z.deltaCall,.63683065);near(z.gamma,.01876202,1e-6);});
+test('put–call parity with dividend',()=>{const p={S:110,K:95,T:.6,r:.04,q:.025,v:.31},z=priceOption(p);near(z.call-z.put,p.S*Math.exp(-p.q*p.T)-p.K*Math.exp(-p.r*p.T),1e-9);});
+test('expiration intrinsic and null Greeks',()=>{const z=priceOption({...standard,T:0,S:108});assert.equal(z.call,8);assert.equal(z.put,0);assert.equal(z.gamma,null);});
+test('zero volatility discounted intrinsic',()=>{const z=priceOption({...standard,v:0});near(z.call,100-100*Math.exp(-.05));assert.equal(z.put,0);});
+test('zero spot',()=>{const z=priceOption({...standard,S:0});assert.equal(z.call,0);near(z.put,100*Math.exp(-.05));});
+test('invalid inputs',()=>{assert.throws(()=>priceOption({...standard,K:0}));assert.throws(()=>priceOption({...standard,T:-1}));});
+test('spot monotonicity',()=>{const a=priceOption({...standard,S:95}),b=priceOption({...standard,S:105});assert.ok(b.call>a.call&&b.put<a.put);});

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="364" viewBox="0 0 1200 364" role="img" aria-labelledby="title description">
+<title id="title">Option Risk Explain</title>
+<desc id="description">Daily equity-option P&amp;L attribution. The selloff example reports a 44,471 dollar portfolio loss, a 63,018 dollar negative Delta contribution and an 11,288 dollar positive Vega contribution.</desc>
+<rect width="1200" height="364" rx="16" fill="#0a1825"/>
+<path d="M30 300H1170" stroke="#355064" stroke-width="1"/>
+<text x="58" y="61" fill="#71d8c2" font-family="Arial,Segoe UI,sans-serif" font-size="16" font-weight="700" letter-spacing="1.7">EQUITY OPTIONS</text>
+<text x="57" y="139" fill="#f2f7fa" font-family="Arial,Segoe UI,sans-serif" font-size="55" font-weight="700">Option Risk</text>
+<text x="57" y="202" fill="#f2f7fa" font-family="Arial,Segoe UI,sans-serif" font-size="55" font-weight="700">Explain</text>
+<text x="58" y="254" fill="#aec3d0" font-family="Arial,Segoe UI,sans-serif" font-size="21">Daily P&amp;L attribution and exception review</text>
+<text x="57" y="332" fill="#9eb7c8" font-family="Arial,Segoe UI,sans-serif" font-size="16">Python API, CLI and browser report</text>
+<g transform="translate(705,37)">
+<rect x="0" y="0" width="438" height="262" rx="12" fill="#122b3d" stroke="#36566b"/>
+<text x="24" y="31" fill="#afc6d3" font-family="Arial,Segoe UI,sans-serif" font-size="15" letter-spacing="1">EQUITY SELLOFF EXAMPLE</text>
+<text x="24" y="91" fill="#ffb49c" font-family="Arial,Segoe UI,sans-serif" font-size="42" font-weight="700">-$44,471</text>
+<text x="27" y="115" fill="#afc6d3" font-family="Arial,Segoe UI,sans-serif" font-size="14">Observed portfolio P&amp;L</text>
+<path d="M24 130H414" stroke="#355569"/>
+<text x="24" y="163" fill="#d7e7ed" font-family="Arial,Segoe UI,sans-serif" font-size="16">Delta</text>
+<rect x="150" y="150" width="152" height="12" rx="3" fill="#ed9c85"/>
+<text x="413" y="162" text-anchor="end" fill="#ffb49c" font-family="Arial,Segoe UI,sans-serif" font-size="15">-$63,018</text>
+<text x="24" y="199" fill="#d7e7ed" font-family="Arial,Segoe UI,sans-serif" font-size="16">Vega</text>
+<rect x="150" y="186" width="28" height="12" rx="3" fill="#71d8c2"/>
+<text x="413" y="198" text-anchor="end" fill="#71d8c2" font-family="Arial,Segoe UI,sans-serif" font-size="15">+$11,288</text>
+<path d="M24 214H414" stroke="#355569"/>
+<text x="24" y="242" fill="#b7ccd6" font-family="Arial,Segoe UI,sans-serif" font-size="15">5 positions</text>
+<text x="413" y="242" text-anchor="end" fill="#b7ccd6" font-family="Arial,Segoe UI,sans-serif" font-size="15">3 exceptions</text>
+</g>
+<text x="716" y="332" fill="#9eb7c8" font-family="Arial,Segoe UI,sans-serif" font-size="15">Synthetic case, 5–6 October 2026</text>
+</svg>

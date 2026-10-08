@@ -1,0 +1,57 @@
+
+/* Interactive risk first: content and calculated evidence above the fold. */
+.risk-section{padding:25px 0 75px;scroll-margin-top:6px}
+.risk-intro{display:flex;align-items:end;justify-content:space-between;gap:40px;margin:0 0 26px}
+.risk-intro h1{font-size:clamp(37px,4.6vw,59px);letter-spacing:-.06em;line-height:1.1;margin:9px 0 11px;color:#f3fbff}
+.risk-intro h1 em{color:#6ee6c8;font-style:normal}
+.risk-intro .lead{font-size:14px;line-height:1.65;max-width:715px;margin:0}
+.risk-intro-side{border-left:1px solid #365567;padding-left:25px;width:230px;flex:0 0 230px}
+.risk-intro-side span{display:block;font-size:10px;font-weight:800;letter-spacing:.11em;color:#6ee6c8}
+.risk-intro-side strong{display:block;font-size:45px;line-height:1.13;margin:6px 0;color:#f2faff;font-variant-numeric:tabular-nums}
+.risk-intro-side p{font-size:13px;color:#c3d7e0;margin:0}
+.risk-intro-side div{color:#92b0bf;font-size:11px;margin-top:13px}
+.risk-shell{padding:24px 26px}
+.risk-scenario-panel{display:grid;grid-template-columns:minmax(230px,.7fr) minmax(0,1.3fr);gap:23px;margin-top:14px;background:#0a1d2d;border:1px solid #3a6677;border-radius:12px;padding:19px 20px}
+.risk-scenario-picker{min-width:0}
+.risk-scenario-picker label{display:block;font-size:11px;letter-spacing:.12em;color:#7fe9ce;font-weight:800;margin-bottom:8px}
+.risk-scenario-picker select{display:block;width:100%;padding:13px 35px 13px 12px;background:#132e41;border:1px solid #588197;border-radius:8px;color:#f2fbff;font-size:15px;font-weight:700;cursor:pointer}
+.risk-scenario-picker p{margin:8px 0 0;font-size:11px;color:#9eb8c6}
+.risk-scenario-story{padding-left:21px;border-left:1px solid #395769}
+.risk-scenario-story h2{font-size:19px;line-height:1.35;letter-spacing:-.018em;margin:6px 0 7px;color:#f0f8fb}
+.risk-scenario-story p{margin:0;color:#a6c1cf;font-size:12px}
+.risk-scenario-story .risk-scenario-move{color:#d9e7ed;font-weight:650}
+.risk-scenario-story .risk-scenario-focus{margin-top:5px;color:#91bbca}
+.risk-shell>.risk-status{margin:12px 0 0;font-size:11px}
+.risk-result{padding-top:13px}
+.risk-result-head{align-items:center}
+.risk-result-head h3{font-size:20px!important}
+.risk-kpis{margin-top:14px}
+.risk-kpi{padding:16px 18px}
+.risk-kpi strong{font-size:clamp(22px,2.35vw,33px)}
+.risk-chart-area{margin-top:14px}
+.risk-block{padding:20px}
+.risk-advanced{margin-top:25px;border-top:1px solid #33566b;padding-top:16px}
+.risk-advanced summary{cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:14px;color:#e0ecf2;font-weight:700;font-size:13px;list-style:revert;outline-offset:4px}
+.risk-advanced summary::marker{color:#6ee6c8}
+.risk-advanced-hint{color:#99b8c9;font-size:11px;font-weight:400}
+.risk-advanced-body{margin-top:18px}
+.risk-advanced .risk-form{margin-top:12px}
+.risk-advanced .reset{color:#83dbc6;border:1px solid #426477;border-radius:7px;text-decoration:none}
+@media(max-width:870px){
+  .risk-intro-side{display:none}
+  .risk-intro{margin-bottom:24px}
+  .risk-scenario-panel{grid-template-columns:1fr}
+  .risk-scenario-story{border-left:0;border-top:1px solid #395769;padding:14px 0 0}
+}
+@media(max-width:570px){
+  .risk-section{padding:21px 0 60px}
+  .risk-intro h1{font-size:clamp(36px,9vw,49px)}
+  .risk-intro .lead{font-size:13px}
+  .risk-shell{padding:15px}
+  .risk-scenario-panel{padding:14px;gap:14px}
+  .risk-scenario-picker select{font-size:14px}
+  .risk-scenario-story h2{font-size:17px}
+  .risk-kpis{gap:9px}
+  .risk-kpi strong{font-size:24px}
+  .risk-advanced summary{flex-direction:column;align-items:start;gap:3px}
+}

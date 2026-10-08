@@ -12,20 +12,16 @@ def grabExpDates(ticker):
     Returns a dataframe of expiration dates available on Yahoo Finance.
     """
     try:
-        # Fetch stock information
         stock = yf.Ticker(ticker)
-        # Get option expiration dates
         expirations = stock.options
         
         if not expirations:
             print(f"No expiration dates found for {ticker}")
             return pd.DataFrame(columns=['Unix Date'])
             
-        # Convert dates to appropriate format
         expDatesNormal = pd.to_datetime(expirations)
         expDatesUnix = [int(x.timestamp()) for x in expDatesNormal]
         
-        # Create DataFrame
         df = pd.DataFrame({'Date': expDatesNormal, 'Unix Date': expDatesUnix})
         df.set_index('Date', inplace=True)
         return df
@@ -38,22 +34,17 @@ def optionChain(ticker='SPY', date='2022-11-18', calls_puts='calls'):
     Get option chain data using yfinance
     """
     try:
-        # Fetch stock information
         stock = yf.Ticker(ticker)
         
-        # Retrieve the option chain for the specified date
         opt = stock.option_chain(date)
         
-        # Return calls or puts based on the specified type
         if calls_puts == 'calls':
             chain = opt.calls
         else:
             chain = opt.puts
             
-        # Add expiration date column
         chain['Exp'] = pd.to_datetime(date)
         
-        # Ensure the returned DataFrame contains the required columns
         required_columns = ['strike', 'lastPrice', 'bid', 'ask', 'volume', 'openInterest', 'impliedVolatility']
         for col in required_columns:
             if col not in chain.columns:
@@ -74,7 +65,6 @@ def fnYFinJSON(stock, field):
         ticker = yf.Ticker(stock)
         info = ticker.info
         if field == 'regularMarketPrice':
-            # If requesting the current price, use fast_info
             return ticker.fast_info['lastPrice']
         elif field in info:
             return info[field]
