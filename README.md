@@ -1,16 +1,16 @@
 # Option Risk Explain
 
 <p align="center">
-  <img src="assets/readme/hero-display.svg" width="100%" alt="Option Risk Explain: equity-options portfolio P&L attribution, with synthetic selloff results showing -$44,471 observed P&L, -$63,018 Delta and +$11,288 Vega">
+  <img src="https://raw.githubusercontent.com/garroshub/OptionRiskExplain/main/assets/readme/hero-display.svg" width="100%" alt="Option Risk Explain: equity-options portfolio P&L attribution, with synthetic selloff results showing -$44,471 observed P&L, -$63,018 Delta and +$11,288 Vega">
 </p>
 
 **Explain an equity-option portfolio's daily P&L from opening Greeks, model revaluation and changes in market marks.** Inspect the factor contributions, reconcile the difference and identify contracts that need review.
 
 <p align="center">
-  <a href="https://garroshub.github.io/OptionRiskExplain/"><img src="assets/readme/button-demo.svg" height="46" alt="Open interactive GitHub Pages demo"></a>
-  <a href="#local-setup"><img src="assets/readme/button-install.svg" height="46" alt="Installation instructions"></a>
-  <a href="#pl-calculation"><img src="assets/readme/button-method.svg" height="46" alt="P&L methodology and scope"></a>
-  <a href="#example-portfolio"><img src="assets/readme/button-cases.svg" height="46" alt="Example scenario results"></a>
+  <a href="https://garroshub.github.io/OptionRiskExplain/"><img src="https://raw.githubusercontent.com/garroshub/OptionRiskExplain/main/assets/readme/button-demo.svg" height="46" alt="Open interactive GitHub Pages demo"></a>
+  <a href="#local-setup"><img src="https://raw.githubusercontent.com/garroshub/OptionRiskExplain/main/assets/readme/button-install.svg" height="46" alt="Installation instructions"></a>
+  <a href="#pl-calculation"><img src="https://raw.githubusercontent.com/garroshub/OptionRiskExplain/main/assets/readme/button-method.svg" height="46" alt="P&L methodology and scope"></a>
+  <a href="#example-portfolio"><img src="https://raw.githubusercontent.com/garroshub/OptionRiskExplain/main/assets/readme/button-cases.svg" height="46" alt="Example scenario results"></a>
 </p>
 
 Python 3.10+ · Python API / CLI / browser · Local CSV analysis · No Streamlit dependency
@@ -33,7 +33,7 @@ P&L reconciliation error                           $0.00
 All inputs are synthetic. The attribution is calculated with the same `option_lab` engine used for custom portfolios. Greeks, full model repricing, market/model basis and individual contract flags are available in the report.
 
 <p align="center">
-  <a href="https://garroshub.github.io/OptionRiskExplain/"><img src="assets/readme/risk-showcase.png" width="100%" alt="Interactive browser workbench with scenario selector, portfolio P&L, risk-factor contribution chart and exception review"></a>
+  <a href="https://garroshub.github.io/OptionRiskExplain/"><img src="https://raw.githubusercontent.com/garroshub/OptionRiskExplain/main/assets/readme/risk-showcase.png" width="100%" alt="Interactive browser workbench with scenario selector, portfolio P&L, risk-factor contribution chart and exception review"></a>
 </p>
 
 ## Example portfolio
@@ -90,7 +90,7 @@ The optional Yahoo Finance adapter is installed with `pip install -e ".[market]"
 ## P&L calculation
 
 <p align="center">
-  <img src="assets/readme/workflow.svg" width="100%" alt="Option P&L workflow: two input snapshots, opening Greek attribution and BSM repricing, then reconciled P&L and contract-level exceptions">
+  <img src="https://raw.githubusercontent.com/garroshub/OptionRiskExplain/main/assets/readme/workflow.svg" width="100%" alt="Option P&L workflow: two input snapshots, opening Greek attribution and BSM repricing, then reconciled P&L and contract-level exceptions">
 </p>
 
 For an unchanged position, with signed contract quantity `Q`, multiplier `M` and end-of-day mark `P`:
