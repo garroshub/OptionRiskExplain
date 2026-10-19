@@ -147,6 +147,12 @@ python tests/wheel_smoke.py
 
 The tests cover prices and Greeks, signed-position P&L reconciliation, input validation, scenario consistency, HTTP endpoints, and Chrome desktop/mobile interactions. The installable distribution is `option-risk-explain`. The Python module remains `option_lab`, and the original `option-lab` CLI remains available.
 
+## Related quant tools
+
+Companion tools from the same open-source quant family:
+
+- **[TaxRebalance](https://github.com/garroshub/taxrebalance)** — tax-aware portfolio rebalancing with Canadian ACB and U.S. tax lots, tracking-error constraints, and convex optimization.
+- **[Portfolio Risk Lab](https://github.com/garroshub/portfolio-risk-lab)** — uncertainty-aware portfolio optimization that compares allocations when risk models disagree, with an interactive decision workspace.
 ---
 
 **[Interactive demo](https://garroshub.github.io/OptionRiskExplain/)** · **[Source code](https://github.com/garroshub/OptionRiskExplain)** · **[Method](#pl-calculation)**
